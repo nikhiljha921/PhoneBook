@@ -4,20 +4,21 @@ import java.io.*;
 public class PhoneBook{
 
 	static Node head;
+
 	static class Node{
-		double mobileNo;
-		String name; 
-        Node prev; 
-        Node next; 
+	 double mobileNo;
+	 String name; 
+     Node prev; 
+     Node next; 
   
-        // Constructor to create a new node 
-        // next and prev is by default initialized as null 
-        Node(double d,String s) {
-         mobileNo = d;
-         name=s; 
-        } 
+     // Constructor to create a new node 
+     // next and prev is by default initialized as null 
+     Node(double d,String s) {
+     mobileNo = d;
+     name=s; 
+     } 
      
-	}
+    }
 	
 
 	static void add(){
@@ -37,21 +38,16 @@ public class PhoneBook{
             
         } 
         else if (head !=null) {
-        	 while (last.next != null) 
-             last = last.next; 
-  
-        
-       		 last.next = new_node; 
-  
-       
-        	new_node.prev = last;
+        	while (last.next != null) 
+            last = last.next; 
+        	last.next = new_node; 
+  			new_node.prev = last;
         }
 
 
         if (head !=null) {
         	System.out.println("Data Added Sucessfully");
         }
-
 	}
 
 	static void delete(){
@@ -62,45 +58,42 @@ public class PhoneBook{
 		if (head==null) {
 			System.out.println("No data found to delete");
 		}
-		if (head.name==del) { // 1st node deletion
+		if (head.name==del) { 
 			Node last=head;
 			head=head.next;
 			head.prev=null;
 			last=null;
 		}
-		else if (head!=null) {//data is bwtween 2 node
+		else if (head!=null) {
 			Node temp=head;
 			while(temp.name!=del){
-				temp=temp.next;
-
+			temp=temp.next;
 			}
+			
 			Node a=temp.next;
 			Node b=temp.prev;
 			b.next=a;
 			a.prev=b;
 			temp=null;
-
-
 		}
-
-
 	}
-	 static void display(){
+
+	static void display(){
 		Node last = null; 
 		Node ptr=head;
 		System.out.println("Wait a second!!!"); 
+		
 		if (ptr==null) {
 			System.out.println("No data Found");
 		}
+
         while (ptr != null) { 
         System.out.println(ptr.name + " "); 
-            System.out.println(ptr.mobileNo + " "); 
-            last = ptr; 
-            ptr = ptr.next; 
-        
-
+        System.out.println(ptr.mobileNo + " "); 
+        last = ptr; 
+        ptr = ptr.next;         
+		}
 	}
-}
 	
 	static void search(){
 		System.out.println("Enter the name or number you want to search");
@@ -108,7 +101,6 @@ public class PhoneBook{
 		String value= val.nextLine();
 		int i = 1;  
         boolean flag = false;  
-      
         Node current = head;  
           
       
@@ -122,8 +114,8 @@ public class PhoneBook{
                 flag = true;  
                 break;  
             }  
-            current = current.next;  
-            i++;  
+        	current = current.next;  
+       		 i++;  
         }  
         if(flag)  
              System.out.println("Data is present in the list at the position : " + i);  
@@ -136,45 +128,41 @@ public class PhoneBook{
 	public static void main(String[] args) {
 
 		PhoneBook phone=new PhoneBook();
-Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Press 1  to add Number");
 		System.out.println("Press 2 to delete Number");
 		System.out.println("Press 3 to Display Number");
 		System.out.println("Press 4 to Search Number");
 		System.out.println("Press 5 to Exit the Program");
 		int check=1;
-		while(in!=0){
-		
-		
-		System.out.println("Enter your choice from the above");
-		int input=sc.nextInt();
-		check=input;
-		switch(input){
-			case 1:
-			add();
-			break;
+		while(check!=0){
+			System.out.println("Enter your choice from the above");
+			int input=sc.nextInt();
+			check=input;
+			switch(input){
+				case 1:
+				add();
+				break;
 
-			
-			case 2:
-			delete();
-			break;
+				case 2:
+				delete();
+				break;
 
-			case 3:
-			display();
-			break;
+				case 3:
+				display();
+				break;
 
-			case 4:
-			search();
-			break;
+				case 4:
+				search();
+				break;
 
-			case 5:
-			 System.exit(0); 
+				case 5:
+			 	System.exit(0); 
 
-			default:
-			System.out.println("Invalid Input!!!Try Again");
-			break;
-
-}
+				default:
+				System.out.println("Invalid Input!!!Try Again");
+				break;
+			}
 		}
 	}
 
