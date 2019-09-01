@@ -4,7 +4,6 @@ import java.io.*;
 public class PhoneBook{
 
 	static Node head;
-sss
 	static class Node{
 		double mobileNo;
 		String name; 
@@ -19,9 +18,7 @@ sss
         } 
      
 	}
-	static void create(){
-		
-	}
+	
 
 	static void add(){
 		System.out.println("Enter Name to add");
@@ -90,23 +87,48 @@ sss
 	}
 	 static void display(){
 		Node last = null; 
-
+		Node ptr=head;
 		System.out.println("Wait a second!!!"); 
-		if (head==null) {
+		if (ptr==null) {
 			System.out.println("No data Found");
 		}
-        while (head != null) { 
-        System.out.println(head.name + " "); 
-            System.out.println(head.mobileNo + " "); 
-            last = head; 
-            head = head.next; 
+        while (ptr != null) { 
+        System.out.println(ptr.name + " "); 
+            System.out.println(ptr.mobileNo + " "); 
+            last = ptr; 
+            ptr = ptr.next; 
         
 
 	}
 }
 	
 	static void search(){
-
+		System.out.println("Enter the name or number you want to search");
+		Scanner val=new Scanner(System.in);
+		String value= val.nextLine();
+		int i = 1;  
+        boolean flag = false;  
+      
+        Node current = head;  
+          
+      
+        if(head == null) {  
+            System.out.println("ContactBook is empty");  
+            return;  
+        }  
+        while(current != null) {  
+            
+            if(current.name == value) {  
+                flag = true;  
+                break;  
+            }  
+            current = current.next;  
+            i++;  
+        }  
+        if(flag)  
+             System.out.println("Data is present in the list at the position : " + i);  
+        else  
+             System.out.println("Data is not present in the list");  
 	}
 
 
@@ -114,44 +136,45 @@ sss
 	public static void main(String[] args) {
 
 		PhoneBook phone=new PhoneBook();
-
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter your choice from the following");
+Scanner sc = new Scanner(System.in);
 		System.out.println("Press 1  to add Number");
-		System.out.println("Press 2 to Modify Number");
-		System.out.println("Press 3 to delete Number");
-		System.out.println("Press 4 to Display Number");
-		System.out.println("Press 5 to Search Number");
-
+		System.out.println("Press 2 to delete Number");
+		System.out.println("Press 3 to Display Number");
+		System.out.println("Press 4 to Search Number");
+		System.out.println("Press 5 to Exit the Program");
+		int check=1;
+		while(in!=0){
+		
+		
+		System.out.println("Enter your choice from the above");
 		int input=sc.nextInt();
-
+		check=input;
 		switch(input){
 			case 1:
-			create();
-			break;
-
-			case 2:
 			add();
 			break;
 
-			case 3:
+			
+			case 2:
 			delete();
 			break;
 
-			case 4:
+			case 3:
 			display();
 			break;
 
-			case 5:
+			case 4:
 			search();
 			break;
+
+			case 5:
+			 System.exit(0); 
 
 			default:
 			System.out.println("Invalid Input!!!Try Again");
 			break;
 
-
+}
 		}
 	}
 
